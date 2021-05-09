@@ -58,7 +58,7 @@
         <a th:href="@{/shop}"><li class="list-group-item">All Products</li></a>
         <a href="" th:each="category, iStat : ${categories}"
            th:href="@{/shop/category/{id}(id=${category.id})}"><li
-                class="list-group-item" th:text="${category.name}"></li></a>
+                class="list-group-item" th:text="${category.categoryName}"></li></a>
 
       </ul>
     </div>

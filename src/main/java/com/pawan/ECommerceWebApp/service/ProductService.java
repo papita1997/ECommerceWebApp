@@ -28,4 +28,8 @@ public class ProductService {
     public void removeProductById(long id) {
         productRepository.deleteById(id);
     }
+
+    public List<Product> findAllProductsByCategoryId(int category_id) {
+        return productRepository.findAllByCategoryId(category_id);
+    }
 }

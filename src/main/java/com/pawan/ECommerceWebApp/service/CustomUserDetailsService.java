@@ -1,5 +1,6 @@
 package com.pawan.ECommerceWebApp.service;
 
+import com.pawan.ECommerceWebApp.global.GlobalData;
 import com.pawan.ECommerceWebApp.model.CustomUserDetails;
 import com.pawan.ECommerceWebApp.model.User;
 import com.pawan.ECommerceWebApp.repository.UserRepository;
@@ -15,11 +16,16 @@ import java.util.Optional;
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
-
+    //private String email = "empty";
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> optionalUser = userRepository.findUserByEmail(email);
+        GlobalData.LoggedInUsername = email;
         optionalUser.orElseThrow(()-> new UsernameNotFoundException("User Not Found!"));
         return optionalUser.map(CustomUserDetails::new).get();
     }
+
+//    public String getLoggedInUsername() {
+//        return email;
+//    }
 }

@@ -68,11 +68,11 @@
 
               <h5 class="mb-4">Cart (<span th:text="${cartCount}">2</span> items)</h5>
 
-              <div class="row mb-4" th:each="item, iStat : ${cart}">
+              <div class="row mb-4" th:each="item, iStat : ${cart.keySet()}">
                 <div class="col-md-5 col-lg-3 col-xl-3">
                   <div class="mb-3 mb-md-0">
                     <img class="img-fluid w-100"
-                         th:src="@{${'/productImages/' + item.imageName}}"
+                         th:src="@{${'/productImages/' + cart.get(item).imageName}}"
                          src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">
 
                   </div>
@@ -81,20 +81,19 @@
                   <div>
                     <div class="d-flex justify-content-between">
                       <div>
-                        <h5 th:text="${item.name}">Blue denim shirt</h5>
-                        <p class="mb-3 text-uppercase small">Weight: <span th:text="${item.weight}"></span> grams</p>
-                        <!--                                                <p class="mb-2 text-uppercase small">Category: <span th:text="${item.category.name}"></span></p>-->
+                        <h5 th:text="${cart.get(item).name}">Blue denim shirt</h5>
+                        <p class="mb-3 text-uppercase small">Weight: <span th:text="${cart.get(item).weight}"></span> grams</p>
+                        <p class="mb-2 text-uppercase small">Category: <span th:text="${cart.get(item).category.categoryName}"></span></p>
 
                       </div>
-
                     </div>
-                    <div class="mt-5 d-flex justify-content-between align-items-center">
+                    <div class="mt-3 d-flex justify-content-between align-items-center">
                       <div>
-                        <a href="#!" th:href="@{/cart/removeItem/{index}(index=${iStat.index})}"  type="button" class="card-link-secondary small text-uppercase mr-3"><i
+                        <a href="#!" th:href="@{/cart/removeItem/{index}(index=${item})}"  type="button" class="card-link-secondary small text-uppercase mr-3"><i
                                 class="fas fa-trash-alt mr-1"></i> Remove item </a>
 
                       </div>
-                      <p class="mb-0"><span><strong>₹<span th:text="${item.price}"></span></strong></span></p>
+                      <p class="mb-0"><span><strong>₹<span th:text="${cart.get(item).price}"></span></strong></span></p>
                     </div>
                   </div>
                 </div>

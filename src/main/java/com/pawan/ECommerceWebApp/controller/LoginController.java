@@ -1,5 +1,6 @@
 package com.pawan.ECommerceWebApp.controller;
 
+import com.pawan.ECommerceWebApp.global.GlobalData;
 import com.pawan.ECommerceWebApp.model.Role;
 import com.pawan.ECommerceWebApp.model.User;
 import com.pawan.ECommerceWebApp.repository.RoleRepository;
@@ -28,6 +29,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginPage() {
+        GlobalData.LoggedInUsername = "";
         return "login";
     }
 

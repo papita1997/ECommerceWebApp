@@ -1,6 +1,5 @@
 package com.pawan.ECommerceWebApp.configuration;
 
-import com.pawan.ECommerceWebApp.global.GlobalData;
 import com.pawan.ECommerceWebApp.model.Role;
 import com.pawan.ECommerceWebApp.model.User;
 import com.pawan.ECommerceWebApp.repository.RoleRepository;
@@ -33,7 +32,6 @@ public class GoogleOAuth2SuccessHandler implements AuthenticationSuccessHandler 
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) authentication;
         String email = token.getPrincipal().getAttributes().get("email").toString();
-        GlobalData.LoggedInUsername = email;
         if(userRepository.findUserByEmail(email).isEmpty()) {
             User user = new User();
             user.setEmail(email);
